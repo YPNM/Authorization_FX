@@ -1,4 +1,4 @@
-package main;
+package com.example.authorization_fx;
 
 import java.net.URL;
 import java.util.ResourceBundle;
