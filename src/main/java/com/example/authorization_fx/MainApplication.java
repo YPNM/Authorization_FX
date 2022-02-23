@@ -17,6 +17,7 @@ public class MainApplication extends Application {
         Scene scene = new Scene(root, 900, 600);
         stage.setTitle("Автоматиз");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
