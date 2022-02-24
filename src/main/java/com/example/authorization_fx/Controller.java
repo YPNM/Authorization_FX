@@ -73,6 +73,7 @@ public class Controller {
             public void handle(ActionEvent e)
             {
                 int counter = 0;
+                int over_count = 0;
                 cart.add_tov(bar_code.getText());
 
                 try {
@@ -98,6 +99,11 @@ public class Controller {
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
+
+                for(int i = 0;i<tovars.size();++i){
+                    over_count += tovars.get(i).getCost();
+                }
+                main_price.setText(Integer.toString(over_count));
                 bar_code.clear();
             }
 
