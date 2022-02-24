@@ -32,7 +32,6 @@ public class BD_connect {
         }
 
         Connection DB_Connect() {
-            System.out.println("Testing connection to PostgreSQL JDBC");
 
             try {
                 Class.forName("org.postgresql.Driver");
@@ -42,7 +41,6 @@ public class BD_connect {
                 return null;
             }
 
-            System.out.println("PostgreSQL JDBC Driver successfully connected");
             Generate_URL();
             try {
                 connection = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -54,11 +52,7 @@ public class BD_connect {
                 return null;
             }
 
-            if (connection != null) {
-                System.out.println("You successfully connected to database now");
-            } else {
-                System.out.println("Failed to make connection to database");
-            }
+
             return connection;
         }
 
