@@ -21,8 +21,6 @@ import javafx.scene.text.Text;
 
 public class Controller {
 
-    private ObservableList<Tovar> tovarData = FXCollections.observableArrayList();
-
     @FXML
     private ResourceBundle resources;
 
