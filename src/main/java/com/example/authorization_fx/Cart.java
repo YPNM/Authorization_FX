@@ -69,28 +69,27 @@ public class Cart {
 
     boolean del_from_db(Tovar tovar){
         Connection conn = bd.DB_Connect();
-        String sql_get = "SELECT count from product where bar_code = '" + tovar.getBar_code() + "'";
+        String sql_get = "SELECT counts from product where bar_code = '" + tovar.getBar_code() + "'";
         int count = 0;
         try {
             PreparedStatement statement = conn.prepareStatement(sql_get);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                count = resultSet.getInt("count");
+                count = resultSet.getInt("counts");
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         count -= tovar.getCount();
+        System.out.println(count);
         String sql = "UPDATE product SET counts = '" + count + "' where bar_code = '" + tovar.getBar_code() + "'";
         try {
-            PreparedStatement statement = conn.prepareStatement(sql_get);
+            PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                return true;
-            }
         } catch (SQLException ex) {
             System.out.println(ex);
+            return false;
         }
-        return false;
+        return true;
     }
 }
