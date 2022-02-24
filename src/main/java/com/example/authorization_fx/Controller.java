@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -61,25 +62,39 @@ public class Controller {
         Connection work_db = DB.DB_Connect();
         Cart cart = new Cart();
         tovar.setCellValueFactory(new PropertyValueFactory<Tovar, String>("Name"));
-        price.setCellValueFactory(new PropertyValueFactory<Tovar, Integer>("Price"));
+        cost.setCellValueFactory(new PropertyValueFactory<Tovar, Integer>("Price"));
         count.setCellValueFactory(new PropertyValueFactory<Tovar, Integer>("count"));
-        cost.setCellValueFactory(new PropertyValueFactory<Tovar,Integer>("cost"));
+        price.setCellValueFactory(new PropertyValueFactory<Tovar,Integer>("cost"));
         table.setEditable(true);
+        ArrayList<Tovar> tovars = new ArrayList<>();
 
         EventHandler<ActionEvent> add_tov = new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent e)
             {
+                int counter = 0;
                 cart.add_tov(bar_code.getText());
+
                 try {
-                    Tovar tov = new Tovar(cart.last_tov(), cart.get_tov_name(cart.last_tov()),
-                            cart.get_tov_price(cart.last_tov()));
-                    System.out.println(tov.getName());
-                    System.out.println(tov.getBar_code());
-                    System.out.println(tov.getCost());
-                    System.out.println(tov.getPrice());
-                    System.out.println(cart.tovars);
-                    table.getItems().add(tov);
+                    if(tovars.size() > 0) {
+                        for (int i = 0; i < tovars.size(); ++i) {
+                            if (Objects.equals(tovars.get(i).getBar_code(), bar_code.getText())) {
+                                tovars.get(i).setCount();
+                                counter++;
+                            }
+                        }
+                        if(counter == 0){
+                            tovars.add(new Tovar(cart.last_tov(), cart.get_tov_name(cart.last_tov()),
+                                        cart.get_tov_price(cart.last_tov())));
+                        }
+                    }
+                    else {
+                        tovars.add(new Tovar(cart.last_tov(), cart.get_tov_name(cart.last_tov()),
+                                cart.get_tov_price(cart.last_tov())));
+                    }
+
+                    table.getItems().clear();
+                    table.getItems().addAll(tovars);
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }

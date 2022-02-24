@@ -13,7 +13,7 @@ public class Tovar extends Cart {
         this.Name = new SimpleStringProperty(Name);
         this.Bar_code = new SimpleStringProperty(Bar_code);
         this.Price = new SimpleIntegerProperty(price);
-        count = new SimpleIntegerProperty(get_tov_count(Bar_code));
+        count = new SimpleIntegerProperty(1);
         cost = new SimpleIntegerProperty(0);
     }
     public String getName(){return Name.get();}
