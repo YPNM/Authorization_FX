@@ -110,7 +110,15 @@ public class Controller {
         };
         bar_code.setOnAction(add_tov);
 
+        EventHandler<ActionEvent> clearing = new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e){
+                for(int i = 0;i<tovars.size();++i){
+                    cart.del_from_db(tovars.get(i));
+                }
+            }
+        };
 
+        buy.setOnAction(clearing);
     }
 
 }
