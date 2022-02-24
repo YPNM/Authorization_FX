@@ -67,6 +67,7 @@ public class Controller {
         price.setCellValueFactory(new PropertyValueFactory<Tovar,Integer>("cost"));
         table.setEditable(true);
         ArrayList<Tovar> tovars = new ArrayList<>();
+        Cassa cassa = new Cassa();
 
         EventHandler<ActionEvent> add_tov = new EventHandler<ActionEvent>() {
 
@@ -110,15 +111,27 @@ public class Controller {
         };
         bar_code.setOnAction(add_tov);
 
-        EventHandler<ActionEvent> clearing = new EventHandler<ActionEvent>(){
+        EventHandler<ActionEvent> selling = new EventHandler<ActionEvent>(){
             public void handle(ActionEvent e){
+                cassa.setMoney(Integer.parseInt(main_price.getText()));
                 for(int i = 0;i<tovars.size();++i){
                     cart.del_from_db(tovars.get(i));
                 }
+                table.getItems().clear();
+                main_price.setText("0");
+                tovars.clear();
             }
         };
 
-        buy.setOnAction(clearing);
+        buy.setOnAction(selling);
+        EventHandler<ActionEvent> clearing = new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e){
+                table.getItems().clear();
+                main_price.setText("0");
+                tovars.clear();
+            }
+        };
+        deny.setOnAction(clearing);
     }
 
 }
