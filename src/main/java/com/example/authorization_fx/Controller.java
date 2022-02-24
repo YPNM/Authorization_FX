@@ -1,11 +1,14 @@
 package com.example.authorization_fx;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 import javafx.collections.FXCollections;
@@ -13,16 +16,19 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class Controller {
     @FXML
-    private MenuItem income;
-
-    @FXML
-    private MenuItem about;
+    private Button admin;
 
     @FXML
     private ResourceBundle resources;
@@ -134,6 +140,23 @@ public class Controller {
         };
         deny.setOnAction(clearing);
 
+        EventHandler<ActionEvent> login = new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e){
+                Parent root;
+                try {
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
+                    Stage stage = new Stage();
+                    stage.setTitle("Log In");
+                    stage.setScene(new Scene(root));
+                    stage.setResizable(false);
+                    stage.show();
+                }
+                catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        };
+        admin.setOnAction(login);
     }
 
 }

@@ -14,14 +14,21 @@ import java.util.Objects;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-frame.fxml")));
-        //Parent root = FXMLLoader.load(Paths.get("D:\\Универ\\IT\\1 курс\\2 трим\\Java\\Authorization_FX\\src\\main\\resources\\com\\example\\authorization_fx\\main-frame.fxml").toUri().toURL());
-        Scene scene = new Scene(root, 900, 600);
-        stage.setTitle("Автоматиз");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+        try {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main-frame.fxml")));
+            //Parent root = FXMLLoader.load(Paths.get("D:\\Универ\\IT\\1 курс\\2 трим\\Java\\Authorization_FX\\src\\main\\resources\\com\\example\\authorization_fx\\main-frame.fxml").toUri().toURL());
+            Scene scene = new Scene(root, 900, 600);
+            stage.setTitle("Автоматиз");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+        }
+        catch(Exception e){
+            System.out.println("Чет не так");
+            System.out.println(e);
+        }
     }
+
 
     public static void main(String[] args) {
         launch();
