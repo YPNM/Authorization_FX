@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -75,6 +77,15 @@ public class Controller {
         table.setEditable(true);
         ArrayList<Tovar> tovars = new ArrayList<>();
         Cassa cassa = new Cassa();
+
+        bar_code.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    bar_code.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
 
         EventHandler<ActionEvent> add_tov = new EventHandler<ActionEvent>() {
 

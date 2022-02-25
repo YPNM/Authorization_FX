@@ -81,7 +81,6 @@ public class Cart {
             System.out.println(ex);
         }
         count -= tovar.getCount();
-        System.out.println(count);
         String sql = "UPDATE product SET counts = '" + count + "' where bar_code = '" + tovar.getBar_code() + "'";
         try {
             PreparedStatement statement = conn.prepareStatement(sql);

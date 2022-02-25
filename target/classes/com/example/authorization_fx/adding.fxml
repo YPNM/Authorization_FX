@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0" prefWidth="290.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.authorization_fx.AddingController">
+   <children>
+      <TextField fx:id="name" layoutX="19.0" layoutY="100.0" prefHeight="26.0" prefWidth="250.0" />
+      <Label layoutX="19.0" layoutY="82.0" text="Название товара" />
+      <TextField fx:id="price" layoutX="19.0" layoutY="155.0" prefHeight="26.0" prefWidth="250.0" />
+      <Label layoutX="19.0" layoutY="137.0" text="Цена" />
+      <TextField fx:id="count" layoutX="19.0" layoutY="210.0" prefHeight="26.0" prefWidth="250.0" />
+      <Label layoutX="19.0" layoutY="192.0" text="Количество" />
+      <Button fx:id="button" layoutX="110.0" layoutY="255.0" mnemonicParsing="false" text="Добавить" />
+      <TextField fx:id="bar_code" layoutX="19.0" layoutY="39.0" prefHeight="26.0" prefWidth="250.0" />
+      <Label layoutX="19.0" layoutY="21.0" text="Штрих Код" />
+   </children>
+</AnchorPane>
